@@ -1,0 +1,56 @@
+#Problem-1
+#goodness of fit 
+#number of coins
+n=5
+n
+#level of significance
+alpha = 0.05
+alpha
+#total no. of tosses
+N=256
+N
+#probability of getting head
+p=0.5
+p
+x = c(0:n);
+x
+#observed frequency
+obf = c(5,35,75,84,45,12)
+obf
+#expected frequency
+exf = (dbinom(x,n,p)*256)
+exf 
+#check the condition if the observed 
+sum(obf)
+sum(exf)
+#output using Chisq-distribution(using formula)
+cv = sum((obf-exf)^2/exf)
+cv
+#critical value using chisq-distribution
+tv = qchisq(1-alpha,n);
+tv 
+#hypothesis conclusion 
+if(cv <= tv){print("Accept H0/fit is good")}
+
+
+#Problem-2
+#Independent of Attributes
+
+#Input the data
+data = matrix(c(69,51,81,20,35,44),ncol=2,byrow=T)#entering data row wise so by row is true if we enter data column wise byrow is false
+data
+
+#number of data
+l=length(data);
+l
+
+#output by chisq-distribution(using built-in function)
+cv = chisq.test(data)
+cv
+
+#p-value
+pv = cv$p.value
+pv
+
+#hypothesis conclusion
+if(cv>alpha){print("Attributes are not independent")}
