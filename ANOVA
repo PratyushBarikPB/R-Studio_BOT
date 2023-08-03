@@ -1,0 +1,83 @@
+#One-way ANOVA
+#Types of tyres
+
+A = c(36,37,42,38,47)
+B = c(46,39,35,37,43)
+C = c(35,42,37,43,38)
+D = c(45,36,39,35,32)
+E = c(41,39,37,35,38)
+
+group = data.frame(cbind(A,B,C,D,E))
+group
+
+summary(group)
+
+#stack vector from data frame
+#stack produces a data frame with two columns
+#values the result of concatenating the 
+#find a factor indicating from which vector
+
+stgr = stack(group)
+stgr
+
+#completely randomized design
+crd = aov(values~ind,data=stgr)
+crd
+
+#Avona Table
+summary(crd)
+
+
+# Two-way ANOVA (Randomized Block Design)
+# Create the dataset
+A = c(36, 37, 42, 38, 47)
+B = c(46, 39, 35, 37, 43)
+C = c(35, 42, 37, 43, 38)
+D = c(45, 36, 39, 35, 32)
+E = c(41, 39, 37, 35, 38)
+
+block = factor(rep(1:5, each = 5))
+block
+factor1 = factor(rep(1:5, times = 5))
+factor1
+values = c(A, B, C, D, E)
+values
+
+# Create the data frame
+data = data.frame(block, factor1, values)
+data
+
+# Perform Two-way ANOVA (Randomized Block Design)
+rbd = aov(values ~ block + factor1, data = data)
+
+# Print the ANOVA table
+summary(rbd)
+
+
+# Three-way ANOVA (Latin Square Design)
+
+# Create the dataset
+A = c(36, 37, 42, 38, 47)
+B = c(46, 39, 35, 37, 43)
+C = c(35, 42, 37, 43, 38)
+D = c(45, 36, 39, 35, 32)
+E = c(41, 39, 37, 35, 38)
+
+treatment = factor(c("A", "B", "C", "D", "E"))
+treatment
+block = factor(c(1, 2, 3, 4, 5))
+block
+replicate = factor(c(1, 2, 3, 4, 5))
+replicate
+values = c(A, B, C, D, E)
+values
+
+# Create the data frame
+data = data.frame(treatment, block, replicate, values)
+data
+
+# Perform Three-way ANOVA (Latin Square Design)
+lsd = aov(values ~ treatment + block + replicate, data = data)
+
+# Print the ANOVA table
+summary(lsd)
