@@ -1,0 +1,37 @@
+# Poisson Distribution
+# Number of trials
+n = 20
+# Probability of Success
+ps = 0.02
+# Poisson parameter
+lambda = n*ps
+lambda
+
+# At least 2 defectives
+p1 = sum(dpois(2:n,lambda))
+p1
+1-ppois(1,lambda)
+# Exactly 2 defectives
+p2 = dpois(2, lambda)
+p2
+
+# Number of boxes containiung exactly 
+round(1000*p2)
+# At most 2 defectives
+p3 = sum(dpois(0:2, lambda))
+p3
+# or
+p3 = ppois(2, lambda)
+p3
+
+# Mean and Variance
+x1 = 0:n
+px1 = dpois(x1, lambda)
+plot(x1, px1, type = "h", xlab = "values of x", ylab = "probability distribution of x",
+     main = " Poisson Distribution")
+
+Ex1 = weighted.mean(x1,px1)
+Ex1
+
+varx1 = Ex1
+varx1
