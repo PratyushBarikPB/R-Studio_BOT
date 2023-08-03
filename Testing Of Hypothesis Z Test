@@ -1,0 +1,77 @@
+#Write the r program for 2 sample mean and 2 sample proportion
+#input sample mean
+xbar = 14.6
+xbar
+#Input the population mean
+mu = 15.4
+mu
+#input s.D
+sigma = 2.5
+sigma
+#input sample size
+n=35
+n
+
+#test statistics
+z=(xbar-mu)/(sigma/sqrt(n))
+z
+
+#Level of significance
+alpha  = 0.05
+alpha
+
+#Two-tailed critical value
+z_half_alpha =qnorm(1-(alpha/2))
+z_half_alpha
+c(-z_half_alpha,z_half_alpha)
+
+#to find p-value
+pval = 2*pnorm(z)
+pval
+
+#conclusion
+if (pval > alpha) {
+  print("Accept the Null hypothesis")
+} else {
+  print("Accept the Alternate hypothesis")
+}
+
+
+#Problem-2
+#input the data
+#size of the sample
+
+n=640
+n
+
+#sample proportion
+Sprop = 63/n
+Sprop
+
+#Probability of proportion
+Pprop = 0.1726
+Pprop
+
+#probability of failure
+q = 1-Pprop
+q
+
+#test statistics
+z = (Sprop-Pprop)/sqrt(Pprop*q/n)
+z
+
+#Critical value
+#z_half_alpha = qnorm(1-(alpha/z))
+E=qnorm(0.975)
+
+#critical region
+c(-E,E)
+
+#confidence interval
+Sprop=c(-E,E)*sqrt(Pprop*(1-Pprop))
+Sprop
+
+#conclusion
+if(z>-E && z<E){print("Hospital is not efficient")}else{
+  print("Hospital is efficient")
+}
