@@ -1,0 +1,41 @@
+# Normal Distribution
+
+# Generating data x
+x = seq(0,40)
+x
+# Finding the density function of x
+y = dnorm(x, mean=20, sd=5)
+y
+
+# Plot the normal distribution curve
+plot(x,y,type='l')
+
+# Proportion of jobs take less than 15
+p1 = pnorm(15, mean=20, sd=5)
+p1
+x2 = seq(0,15)
+x2
+y2 = dnorm(x2, mean=20, sd=5)
+y2
+polygon(c(0,x2,15), c(0,y2,0), col='orange')
+
+
+# Proportion of jobs take more than 25 
+p2 = pnorm(40, mean=20, sd=5) - pnorm(25, mean=20, sd=5)
+p2
+x1 = seq(25,40)
+x1
+y1 = dnorm(x1, mean=20, sd=5)
+y1
+polygon(c(25,x1,40), c(0,y1,0), col='green')
+# Between 15 and 25
+p3 = pnorm(25, mean=20, sd=5) - pnorm(15, mean=20, sd=5)
+p3
+x3 = seq(15,25)
+x3
+y3 = dnorm(x3, mean=20, sd=5)
+y3
+polygon(c(15,x3,25), c(0,y3,0), col='white')
+
+# Probability of Distribution
+data.frame(p1,p2,p3)
