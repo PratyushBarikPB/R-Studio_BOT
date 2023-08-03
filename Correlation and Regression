@@ -1,0 +1,39 @@
+#creating custom data frame
+x=c(5,6,7,8,9)
+x
+y=c(7,9,10,12,15)
+y
+dataframe=data.frame(x,y)
+dataframe
+#S.D of x
+sdx=sd(dataframe$x)
+sdx
+#S.D of y
+sdy=sd(dataframe$y)
+sdy
+
+#variance for x
+varx=var(dataframe$x)
+varx
+#variance for y
+vary=var(dataframe$y)
+vary
+
+#covariance of x and y
+corvar=cov(dataframe$x,dataframe$y)
+corvar
+
+#corelation of x and y
+cor1=(corvar/sdx*sdy)
+cor1
+
+cor2=cor(dataframe$x,dataframe$y)
+cor2
+
+#plot
+plot(dataframe$x,dataframe$y)
+#Regression Model
+plot(cars$speed,cars$dist)
+reg=lm(cars$speed~cars$dist)
+reg
+abline(reg)
