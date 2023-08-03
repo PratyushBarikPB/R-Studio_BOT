@@ -1,0 +1,61 @@
+#Creating Column Vectors
+empid=c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15)
+empid
+age=c(30,37,45,32,50,60,35,32,34,43,32,38,41,42,54)
+age
+gender=c(0,1,1,0,0,1,0,0,1,1,1,0,1,1,0)
+gender
+status=c(1,2,2,1,2,2,1,1,2,2,1,1,2,2,2)
+status
+#Creating data Frame
+empinfo=data.frame(empid,age,gender,status)
+empinfo
+
+#Labelling values for a column
+empinfo$gender=factor(empinfo$gender,labels=c("male","female"))
+empinfo
+empinfo$status=factor(empinfo$status,labels=c("staff","faculty"))
+empinfo
+
+#Extracting Data
+male=subset(empinfo,empinfo$gender=="male")
+male
+female=subset(empinfo,empinfo$gender=="female")
+female
+faculty=subset(empinfo,empinfo$status=="faculty")
+faculty
+staff=subset(empinfo,empinfo$status=="staff")
+staff
+
+#Finding basic summary for dataset
+
+summary(empinfo)
+#Finding basic summary for male,female etc
+summary(male)
+summary(female)
+summary(age)
+
+#Creating table(one-way)
+table1=table(empinfo$gender)
+table1
+table2=table(empinfo$status)
+table2
+#Creating table(two-way)
+table3=table(empinfo$gender,empinfo$status)
+table3
+
+#Graphical Representative (Scatterplot)
+plot(empinfo$age,type="l",main = "Age of employee",xlab="empid",ylab="age in years",col='blue')
+
+#PIE CHART
+pie(table1)
+
+#Grounded Bar Plot
+barplot(table3,beside = T,xlim=c(1,15),ylim=c(0,5),col=c("blue","red"))
+legend("topright",legend=rownames(table3),fill=c('blue','red'),bty="y")
+
+barplot(table3,beside = F,xlim=c(1,15),ylim=c(0,5),col=c("blue","red"))
+legend("topright",legend=rownames(table3),fill=c('blue','red'),bty="y")
+
+#Box plot
+boxplot(empinfo$age~empinfo$status,col=c('yellow','green'))
