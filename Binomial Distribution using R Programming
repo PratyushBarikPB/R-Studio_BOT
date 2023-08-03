@@ -1,0 +1,58 @@
+# Binomial Distribution using R Programming
+# Probability distribution of tossing 4 coins
+# x is number of heads
+
+# Uses of inbuilt binom functions
+# dbinom (P(x=3))
+# dbinom(x,n,p)
+# pbinom (P(x<=3))
+# pbinom(x,n,p)
+# qbinom (P(x<=k) = 3)
+# qbinom(P(x),n,p)
+# rbinom
+# dpois(x,lambda)
+
+
+# number of trials
+n = 4
+n
+# Probability of Success
+p = 0.02
+p
+
+# P(x=3), P(x=2)
+dbinom(3,n,p)
+dbinom(2,n,p)
+
+# Probability of getting at least 2 heads
+sum(dbinom(2:4,n,p))
+# or
+1-pbinom(1,n,p)
+
+# Probability of getting at most 2 heads
+sum(dbinom(0:2,n,p))
+# or
+pbinom(2,n,p)
+
+#random
+rbinom(2, n, p)
+
+
+# Mean or Expectation
+x = 0:n
+x
+px = dbinom(x,n,p)
+px
+Ex = weighted.mean(x,px)
+Ex
+# Variance
+varx = weighted.mean(x*x,px) - weighted.mean(x,px)^2
+varx
+
+# Visualize probability Distribution
+plot(x, px, type = "h", xlab = "values of x", ylab = "probability distribution of x",
+     main = " Binomial Distribution")
+
+
+# qbinom
+qbinom(0.9999685, n, p) - 1 
