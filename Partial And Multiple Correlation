@@ -1,0 +1,32 @@
+data1=read.csv(file.choose())
+data1
+#plot a scatter plot
+plot(data1$X,data1$Y,main='Regression of A and B',xlab='X',ylab='Y')
+#plot a regression line
+reg=lm(Y~X,data = data1)
+reg
+abline(reg)
+
+
+#install and load the required libraries
+install.packages("scatterplot3d")
+library(scatterplot3d)
+
+# Load the data
+data1 <- read.csv(file.choose())
+data1
+
+# Perform multilinear regression
+multilinear_model <- lm(Z ~ X + Y, data = data1)
+
+# Create a 3D scatter plot
+s3d <- scatterplot3d(data1$X, data1$Y, data1$Z, color = "blue", grid = FALSE, 
+                     xlab = "X", ylab = "Y", zlab = "Z", main = "Multilinear Regression")
+
+# Add the regression surface to the 3D plot
+x_pred <- seq(min(data1$X), max(data1$X), length.out = 50)
+y_pred <- seq(min(data1$Y), max(data1$Y), length.out = 50)
+xy_grid <- expand.grid(X = x_pred, Y = y_pred)
+z_pred <- predict(multilinear_model, newdata = xy_grid)
+
+s3d$plane3d(x_pred, y_pred, z_pred, alpha = 0.5,col="red")
